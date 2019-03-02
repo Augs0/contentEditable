@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato|Montserrat"
+      rel="stylesheet"
+    />
+    <title>Content editable and dropdown</title>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: peachpuff;
+        font-family: "Lato", sans-serif;
+      }
+
+      h1 {
+        margin-top: 50px;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      #enter {
+        padding:10px;
+        max-width: 400px;
+        background-color: seashell;
+        color: seagreen;
+        margin: 50px auto;
+        border-radius: 3px;
+      }
+
+      form {
+        text-align: center;
+      }
+
+      .btn {
+        background-color: transparent;
+        border: black solid 1px;
+        border-radius: 2px;
+        padding: 5px;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      #fontList {
+        position: relative;
+        display: inline-block;
+        margin: 10px 10px 10px -170px
+      }
+
+      .fonts {
+        display: none;
+        padding:5px;
+        border-radius:10px;
+        position: absolute;
+        background-color:wheat;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      li:hover {
+        cursor: pointer;
+      }
+
+      #examples {
+        background-color: snow;
+        color: darkcyan;
+        max-width: 400px;
+        margin: 50px auto;
+        border-radius: 3px;
+        text-align:center;
+        padding:10px;
+      }
+
+      .show {
+        display: block;
+      }
+
+      hr{
+          border-top:solid black 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Enter some text below then select a font</h1>
+    <div class="container">
+      <div id="enter" contenteditable="true"></div>
+      <form>
+        <input id="submit" class="btn" type="submit" value="Submit" />
+      </form>
+    </div>
+    <div id="examples">
+        Your text will appear here
+    </div>
+    <div class="container">
+      <button class="btn" onClick="toggleFontsView()">View/hide fonts</button
+      ><br />
+      <div id="fontList">
+        <div class="fonts">
+          <li class="choice" id="arial">Arial</li><hr>
+          <li class="choice" id="arialBlack">Arial Black</li><hr>
+          <li class="choice" id="helvetica">Helvetica</li><hr>
+          <li class="choice" id="courierNew">Courier New</li><hr>
+          <li class="choice" id="times">Times New Roman</li><hr>
+          <li class="choice" id="verdana">Verdana</li><hr>
+          <li class="choice" id="georgia">Georgia</li><hr>
+          <li class="choice" id="palatino">Palatino</li><hr>
+          <li class="choice" id="garamond">Garamond</li><hr>
+          <li class="choice" id="bookman">Bookman</li><hr>
+          <li class="choice" id="comicSans">Comic Sans</li><hr>
+          <li class="choice" id="trebuchet">Trebuchet MS</li><hr>
+          <li class="choice" id="impact">Impact</li><hr>
+        </div>
+      </div>
+    </div>
+    <script>
+      const userInput = document.getElementById('enter');
+      const submit = document.getElementById('submit');
+      const output = document.getElementById('examples');
+
+      function updateExamples(e){
+          e.preventDefault();
+          output.textContent = userInput.textContent;
+      }
+
+      submit.addEventListener('click',updateExamples);
+
+      function toggleFontsView(){
+          document.querySelector('.fonts').classList.toggle("show");
+      }
+
+      //switch case for font selection
+      $('.choice').click(function () {
+      switch ($(this).attr('id')) {
+          case 'arial':
+               output.style.fontFamily = 'Arial';
+               break;
+          case 'arialBlack':
+               output.style.fontFamily = 'Arial Black';
+               break;
+          case 'helvetica':
+               output.style.fontFamily = 'Helvetica';
+               break;
+          case 'courierNew':
+               output.style.fontFamily = 'Courier New';
+               break;   
+          case 'courierNew':
+               output.style.fontFamily = 'Courier New';
+               break;   
+        case 'times':
+               output.style.fontFamily = 'Times New Roman';
+               break;   
+               case 'verdana':
+               output.style.fontFamily = 'Verdana';
+               break;   
+               case 'georgia':
+               output.style.fontFamily = 'Georgia';
+               break;   
+               case 'palatino':
+               output.style.fontFamily = 'Palatino';
+               break;   
+               case 'garamond':
+               output.style.fontFamily = 'Garamond';
+               break;   
+               case 'bookman':
+               output.style.fontFamily = 'Bookman';
+               case 'comicSans':
+               output.style.fontFamily = 'Comic Sans MS';
+               break;   
+               case 'trebuchet':
+               output.style.fontFamily = 'Trebuchet MS';
+               break;   
+               case 'impact':
+               output.style.fontFamily = 'Impact';
+               break;   
+               break;          
+               default:
+               console.log('No id');
+      }
+      });
+    </script>
+  </body>
+</html>
